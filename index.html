@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Currículo - Kelvin Costa Maues</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-blue: #4A90E2;
+            --dark-blue: #1E3A8A;
+            --light-blue: #E3F2FD;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            background: var(--gradient);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .hero-section {
+            background: var(--gradient);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .curriculum-display {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .curriculum-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .curriculum-header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .curriculum-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+
+        .curriculum-body {
+            padding: 40px;
+        }
+
+        .section-title {
+            color: var(--dark-blue);
+            font-weight: bold;
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--primary-blue);
+            padding-bottom: 5px;
+            margin: 30px 0 20px 0;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .skill-tag {
+            background: var(--primary-blue);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 3px;
+            display: inline-block;
+        }
+
+        .experience-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--light-blue);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .experience-title {
+            font-weight: bold;
+            color: var(--dark-blue);
+            font-size: 1.1rem;
+        }
+
+        .experience-company {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .experience-description {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .btn-generate {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .btn-create {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border: none;
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            margin: 20px 0;
+        }
+
+        .btn-create:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .curriculum-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .cta-section {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin: 40px 0;
+            color: white;
+        }
+
+        .form-container {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .form-section h4 {
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+        }
+
+        .dynamic-field {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 12px;
+        }
+
+        .add-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="container">
+                <h1 class="display-4"><i class="fas fa-file-pdf me-3"></i>Gerador de Currículo Profissional</h1>
+                <p class="lead">Crie seu currículo profissional em PDF de forma rápida e fácil</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Currículo Exemplo (Kelvin) -->
+            <div id="example-curriculum" class="curriculum-display">
+                <div class="curriculum-header">
+                    <h1>Kelvin Costa Maues</h1>
+                    <div class="subtitle">Desenvolvedor de Software & Técnico em Informática</div>
+                    <div class="contact-info">
+                        <span><i class="fas fa-map-marker-alt me-2"></i>Travessa Aimoré, 18, Manaus</span>
+                        <span><i class="fas fa-phone me-2"></i>(92) 9 85116243</span>
+                        <span><i class="fas fa-envelope me-2"></i>kelvincosta4545@gmail.com</span>
+                        <span><i class="fas fa-link me-2"></i>Portfolio Online</span>
+                    </div>
+                </div>
+
+                <div class="curriculum-body">
+                    <h3 class="section-title"><i class="fas fa-user me-2"></i>Resumo Profissional</h3>
+                    <p>Sou Técnico em Informática com sólida formação e ampla experiência em Desenvolvimento de software. Atualmente, estou cursando Ciência da Computação, o que tem ampliado ainda mais minha visão sobre tecnologia e inovação. Tenho profundo conhecimento em linguagens de programação, metodologias ágeis e boas práticas de desenvolvimento, aliado a uma abordagem criativa e eficiente para resolução de problemas e otimização de processos.</p>
+                    
+                    <p>Sou apaixonado pela área de tecnologia e estou sempre em busca de novos desafios. Tenho grande interesse nas áreas de dados e visão computacional, onde vejo oportunidades empolgantes para aplicar inteligência artificial e análise de informações de forma estratégica.</p>
+
+                    <h3 class="section-title"><i class="fas fa-code me-2"></i>Habilidades e Competências</h3>
+                    <div class="skills-container">
+                        <span class="skill-tag">HTML & CSS</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Banco de Dados</span>
+                        <span class="skill-tag">Back-end</span>
+                        <span class="skill-tag">Front-end</span>
+                        <span class="skill-tag">Análise de Sistemas</span>
+                        <span class="skill-tag">Suporte Técnico</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Metodologias Ágeis</span>
+                    </div>
+
+                    <h3 class="section-title"><i class="fas fa-briefcase me-2"></i>Experiência Profissional</h3>
+                    
+                    <div class="experience-item">
+                        <div class="experience-title">Estagiário de Desenvolvedor</div>
+                        <div class="experience-company">Visteon Corporation - Manaus, AM | Abril 2025 - atual</div>
+                        <div class="experience-description">
+                            Estagiário de Desenvolvimento – Visteon Corporation. Atuação no desenvolvimento de sistemas e apoio a projetos, contribuindo para a otimização de processos e inovação em soluções tecnológicas. Essa experiência tem fortalecido minhas habilidades técnicas, minha visão de trabalho em equipe e meu desenvolvimento profissional em um ambiente corporativo.
+                            <ul class="mt-2">
+                                <li>Utilização de ferramentas de controle de versão, como Git, gerenciando o código-fonte</li>
+                                <li>Criação de scripts de automação para otimizar processos repetitivos, economizando tempo e recursos da equipe</li>
+                                <li>Manutenção e melhoria contínua de sistemas existentes, identificando e corrigindo bugs e implementando novas funcionalidades</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-title">Desenvolvedor</div>
+                        <div class="experience-company">NaviView - Manaus, AM | Junho 2023 - Dezembro 2024</div>
+                        <div class="experience-description">
+                            Visão geral do projeto: O NaviView é um sistema que auxilia pessoas deficientes visuais em sua geolocalização e deslocamento por meio da tecnologia, visando à garantia de segurança e independência em sua locomoção, além da diminuição dos impactos causados pela falta de acessibilidade.
+                            <ul class="mt-2">
+                                <li>Implementação de testes automatizados, garantindo a robustez e a confiabilidade do código em todas as etapas do desenvolvimento</li>
+                                <li>Acompanhamento de tendências e avanços tecnológicos, garantindo a aplicação das melhores práticas no desenvolvimento de software</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="section-title"><i class="fas fa-graduation-cap me-2"></i>Formação Acadêmica</h3>
+                    
+                    <div class="experience-item">
+                        <div class="experience-title">Ciências da Computação</div>
+                        <div class="experience-company">Universidade Paulista - Manaus | Janeiro 2025 - Janeiro 2029</div>
+                        <div class="experience-description">
+                            Iniciei o Curso de Ciências da Computação na Universidade Paulista, buscando expandir meus conhecimentos e habilidades nas áreas de tecnologia e inovação. Com foco em desenvolver soluções criativas e eficientes, espero contribuir ativamente para o avanço do setor e aprimorar minhas competências técnicas ao longo da graduação.
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-title">Técnico em Informática</div>
+                        <div class="experience-company">Fundação Matias Machline - Manaus | Janeiro 2022 - Dezembro 2024</div>
+                        <div class="experience-description">
+                            O curso ofereceu uma abordagem prática e teórica, proporcionando a capacidade de enfrentar desafios tecnológicos e colaborar efetivamente em projetos de equipe com uma formação abrangente e sólida.
+                        </div>
+                    </div>
+
+                    <div class="two-column">
+                        <div>
+                            <h3 class="section-title"><i class="fas fa-language me-2"></i>Idiomas</h3>
+                            <p><strong>Português:</strong> Língua materna</p>
+                            <p><strong>Inglês:</strong> Intermediário</p>
+                        </div>
+                        <div>
+                            <h3 class="section-title"><i class="fas fa-heart me-2"></i>Hobbies</h3>
+                            <p>Música, Esporte, Leitura, Assistir, Jogar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="text-center mb-4">
+                <button onclick="generatePDF()" class="btn btn-generate btn-lg me-3">
+                    <i class="fas fa-download me-2"></i>Baixar PDF deste Currículo
+                </button>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <h2><i class="fas fa-magic me-3"></i>Crie Seu Próprio Currículo!</h2>
+                <p class="lead">Use nosso gerador para criar um currículo profissional personalizado em minutos</p>
+                <button onclick="showForm()" class="btn btn-create btn-lg">
+                    <i class="fas fa-plus-circle me-2"></i>Criar Meu Currículo
+                </button>
+            </div>
+
+            <!-- Formulário Dinâmico (Oculto inicialmente) -->
+            <div id="form-container" class="form-container">
+                <h2 class="text-center mb-4"><i class="fas fa-edit me-2"></i>Criar Seu Currículo</h2>
+                
+                <form id="curriculum-form">
+                    <!-- Informações Pessoais -->
+                    <div class="form-section">
+                        <h4><i class="fas fa-user me-2"></i>Informações Pessoais</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-label">Nome Completo *</label>
+                                <input type="text" class="form-control" id="fullName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Título Profissional *</label>
+                                <input type="text" class="form-control" id="jobTitle" placeholder="Ex: Desenvolvedor Full Stack">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Telefone</label>
+                                <input type="text" class="form-control" id="phone">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email *</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Endereço</label>
+                                <input type="text" class="form-control" id="address">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Website/Portfolio</label>
+                                <input type="url" class="form-control" id="website">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resumo Profissional -->
+                    <div class="form-section">
+                        <h4><i class="fas fa-file-text me-2"></i>Resumo Profissional</h4>
+                        <label class="form-label">Descreva sua experiência e objetivos profissionais</label>
+                        <textarea class="form-control" id="summary" rows="4" placeholder="Descreva brevemente sua experiência, habilidades e objetivos profissionais..."></textarea>
+                    </div>
+
+                    <!-- Habilidades -->
+                    <div class="form-section">
+                        <h4><i class="fas fa-code me-2"></i>Habilidades</h4>
+                        <div id="skills-container">
+                            <div class="dynamic-field">
+                                <input type="text" class="form-control" name="skill" placeholder="Ex: JavaScript, Python, React...">
+                                <button type="button" class="remove-btn" onclick="removeField(this)">×</button>
+                            </div>
+                        </div>
+                        <button type="button" class="add-btn" onclick="addSkill()"><i class="fas fa-plus me-1"></i>Adicionar Habilidade</button>
+                    </div>
+
+                    <!-- Experiência -->
+                    <div class="form-section">
+                        <h4><i class="fas fa-briefcase me-2"></i>Experiência Profissional</h4>
+                        <div id="experience-container">
+                            <div class="dynamic-field">
+                                <button type="button" class="remove-btn" onclick="removeField(this)">×</button>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Cargo</label>
+                                        <input type="text" class="form-control" name="jobPosition">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Empresa</label>
+                                        <input type="text" class="form-control" name="company">
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Data Início</label>
+                                        <input type="text" class="form-control" name="startDate" placeholder="Ex: Janeiro 2023">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Data Fim</label>
+                                        <input type="text" class="form-control" name="endDate" placeholder="Ex: Atual">
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label">Descrição</label>
+                                    <textarea class="form-control" name="jobDescription" rows="3" placeholder="Descreva suas responsabilidades e conquistas..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="add-btn" onclick="addExperience()"><i class="fas fa-plus me-1"></i>Adicionar Experiência</button>
+                    </div>
+
+                    <!-- Formação -->
+                    <div class="form-section">
+                        <h4><i class="fas fa-graduation-cap me-2"></i>Formação Acadêmica</h4>
+                        <div id="education-container">
+                            <div class="dynamic-field">
+                                <button type="button" class="remove-btn" onclick="removeField(this)">×</button>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Curso</label>
+                                        <input type="text" class="form-control" name="course">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Instituição</label>
+                                        <input type="text" class="form-control" name="institution">
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Data Início</label>
+                                        <input type="text" class="form-control" name="eduStartDate">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Data Fim</label>
+                                        <input type="text" class="form-control" name="eduEndDate">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="add-btn" onclick="addEducation()"><i class="fas fa-plus me-1"></i>Adicionar Formação</button>
+                    </div>
+
+                    <!-- Botões de Ação -->
+                    <div class="text-center mt-4">
+                        <button type="button" onclick="generateCustomPDF()" class="btn btn-generate btn-lg me-3">
+                            <i class="fas fa-file-pdf me-2"></i>Gerar Meu PDF
+                        </button>
+                        <button type="button" onclick="hideForm()" class="btn btn-outline-secondary btn-lg">
+                            <i class="fas fa-times me-2"></i>Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="curriculum-generator.js"></script>
+</body>
+</html>

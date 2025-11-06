@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Currículo</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #4A90E2;
+            --dark-blue: #1E3A8A;
+            --light-blue: #E3F2FD;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            background: var(--gradient);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .logo {
+            font-size: 4rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .title {
+            color: var(--dark-blue);
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .create-btn {
+            background: var(--gradient);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .create-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .example-btn {
+            border: 2px solid var(--primary-blue) !important;
+            color: var(--primary-blue) !important;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .example-btn:hover {
+            background: var(--primary-blue) !important;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        .features {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .feature-icon {
+            color: var(--primary-blue);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="logo">
+            <i class="fas fa-file-alt"></i>
+        </div>
+        
+        <h1 class="title">Gerador de Currículo</h1>
+        <p class="subtitle">Crie seu currículo profissional de forma rápida e fácil</p>
+        
+        <button class="btn create-btn" onclick="window.location.href='create-curriculum.html'">
+            <i class="fas fa-plus-circle me-2"></i>
+            Criar Meu Currículo
+        </button>
+        
+        <button class="btn example-btn mt-3" onclick="window.location.href='index.html'" style="border-radius: 50px; padding: 12px 30px; font-size: 1.1rem;">
+            <i class="fas fa-eye me-2"></i>
+            Ver Exemplo
+        </button>
+        
+        <div class="features">
+            <div class="feature-item">
+                <i class="fas fa-check-circle feature-icon"></i>
+                <span>Interface intuitiva e fácil de usar</span>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-download feature-icon"></i>
+                <span>Download direto em PDF</span>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-paint-brush feature-icon"></i>
+                <span>Design profissional e moderno</span>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-mobile-alt feature-icon"></i>
+                <span>Responsivo para todos os dispositivos</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

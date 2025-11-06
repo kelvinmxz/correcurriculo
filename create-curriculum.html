@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Currículo - Gerador de Currículo</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-blue: #4A90E2;
+            --dark-blue: #1E3A8A;
+            --light-blue: #E3F2FD;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            background: var(--gradient);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 1000px;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-title {
+            color: var(--dark-blue);
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .form-subtitle {
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        .section-title {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-blue);
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--dark-blue);
+            margin-bottom: 8px;
+        }
+
+        .form-control, .form-select {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+        }
+
+        .add-btn {
+            background: var(--primary-blue);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .add-btn:hover {
+            background: var(--dark-blue);
+            color: white;
+        }
+
+        .remove-btn {
+            background: #dc3545;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+
+        .remove-btn:hover {
+            background: #c82333;
+        }
+
+        .action-buttons {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .dynamic-section {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+        }
+
+        .back-link {
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(255,255,255,0.3);
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="home.html" class="back-link">
+            <i class="fas fa-arrow-left me-2"></i>
+            Voltar
+        </a>
+
+        <div class="form-card">
+            <div class="form-header">
+                <h1 class="form-title">Criar Meu Currículo</h1>
+                <p class="form-subtitle">Preencha as informações abaixo para gerar seu currículo profissional</p>
+            </div>
+
+            <form id="curriculum-form">
+                <!-- Informações Pessoais -->
+                <div class="mb-5">
+                    <h3 class="section-title">
+                        <i class="fas fa-user me-2"></i>
+                        Informações Pessoais
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="fullName" class="form-label">Nome Completo *</label>
+                            <input type="text" class="form-control" id="fullName" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="profession" class="form-label">Profissão/Cargo *</label>
+                            <input type="text" class="form-control" id="profession" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">E-mail *</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="phone" class="form-label">Telefone *</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="address" class="form-label">Endereço</label>
+                            <input type="text" class="form-control" id="address">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="linkedin" class="form-label">LinkedIn/Portfolio</label>
+                            <input type="url" class="form-control" id="linkedin">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumo Profissional -->
+                <div class="mb-5">
+                    <h3 class="section-title">
+                        <i class="fas fa-file-alt me-2"></i>
+                        Resumo Profissional
+                    </h3>
+                    <div class="mb-3">
+                        <label for="summary" class="form-label">Resumo/Objetivo Profissional *</label>
+                        <textarea class="form-control" id="summary" rows="4" required placeholder="Descreva brevemente seu perfil profissional, experiências e objetivos..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Experiência Profissional -->
+                <div class="mb-5">
+                    <h3 class="section-title">
+                        <i class="fas fa-briefcase me-2"></i>
+                        Experiência Profissional
+                    </h3>
+                    <div id="experience-container">
+                        <div class="dynamic-section experience-item">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Cargo</label>
+                                    <input type="text" class="form-control experience-position">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Empresa</label>
+                                    <input type="text" class="form-control experience-company">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Data de Início</label>
+                                    <input type="month" class="form-control experience-start">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Data de Fim</label>
+                                    <input type="month" class="form-control experience-end">
+                                    <div class="form-check mt-2">
+                                        <input class="form-check-input experience-current" type="checkbox">
+                                        <label class="form-check-label">Trabalho atual</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label class="form-label">Descrição das Atividades</label>
+                                    <textarea class="form-control experience-description" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <button type="button" class="btn remove-btn" onclick="removeExperience(this)" style="display: none;">
+                                <i class="fas fa-trash"></i> Remover
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn add-btn" onclick="addExperience()">
+                        <i class="fas fa-plus"></i> Adicionar Experiência
+                    </button>
+                </div>
+
+                <!-- Formação Acadêmica -->
+                <div class="mb-5">
+                    <h3 class="section-title">
+                        <i class="fas fa-graduation-cap me-2"></i>
+                        Formação Acadêmica
+                    </h3>
+                    <div id="education-container">
+                        <div class="dynamic-section education-item">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Curso</label>
+                                    <input type="text" class="form-control education-course">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Instituição</label>
+                                    <input type="text" class="form-control education-institution">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Ano de Conclusão</label>
+                                    <input type="number" class="form-control education-year" min="1950" max="2030">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Status</label>
+                                    <select class="form-select education-status">
+                                        <option value="Concluído">Concluído</option>
+                                        <option value="Em andamento">Em andamento</option>
+                                        <option value="Trancado">Trancado</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="button" class="btn remove-btn" onclick="removeEducation(this)" style="display: none;">
+                                <i class="fas fa-trash"></i> Remover
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn add-btn" onclick="addEducation()">
+                        <i class="fas fa-plus"></i> Adicionar Formação
+                    </button>
+                </div>
+
+                <!-- Habilidades -->
+                <div class="mb-5">
+                    <h3 class="section-title">
+                        <i class="fas fa-cogs me-2"></i>
+                        Habilidades
+                    </h3>
+                    <div class="mb-3">
+                        <label for="skills" class="form-label">Habilidades Técnicas e Pessoais</label>
+                        <textarea class="form-control" id="skills" rows="3" placeholder="Digite suas habilidades separadas por vírgula (ex: JavaScript, Python, Trabalho em equipe, Liderança...)"></textarea>
+                    </div>
+                </div>
+
+                <!-- Idiomas -->
+                <div class="mb-5">
+                    <h3 class="section-title">
+                        <i class="fas fa-language me-2"></i>
+                        Idiomas
+                    </h3>
+                    <div id="languages-container">
+                        <div class="dynamic-section language-item">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Idioma</label>
+                                    <input type="text" class="form-control language-name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Nível</label>
+                                    <select class="form-select language-level">
+                                        <option value="Básico">Básico</option>
+                                        <option value="Intermediário">Intermediário</option>
+                                        <option value="Avançado">Avançado</option>
+                                        <option value="Fluente">Fluente</option>
+                                        <option value="Nativo">Nativo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="button" class="btn remove-btn" onclick="removeLanguage(this)" style="display: none;">
+                                <i class="fas fa-trash"></i> Remover
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn add-btn" onclick="addLanguage()">
+                        <i class="fas fa-plus"></i> Adicionar Idioma
+                    </button>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="action-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='home.html'">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        Voltar
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="generatePDF()">
+                        <i class="fas fa-download me-2"></i>
+                        Baixar PDF
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Funções para adicionar/remover experiências
+        function addExperience() {
+            const container = document.getElementById('experience-container');
+            const newItem = document.querySelector('.experience-item').cloneNode(true);
+            
+            // Limpar os valores
+            const inputs = newItem.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                if (input.type === 'checkbox') {
+                    input.checked = false;
+                } else {
+                    input.value = '';
+                }
+            });
+            
+            // Mostrar botão de remover
+            newItem.querySelector('.remove-btn').style.display = 'inline-block';
+            
+            container.appendChild(newItem);
+        }
+
+        function removeExperience(button) {
+            button.parentElement.remove();
+        }
+
+        // Funções para adicionar/remover formação
+        function addEducation() {
+            const container = document.getElementById('education-container');
+            const newItem = document.querySelector('.education-item').cloneNode(true);
+            
+            // Limpar os valores
+            const inputs = newItem.querySelectorAll('input, select');
+            inputs.forEach(input => input.value = '');
+            
+            // Mostrar botão de remover
+            newItem.querySelector('.remove-btn').style.display = 'inline-block';
+            
+            container.appendChild(newItem);
+        }
+
+        function removeEducation(button) {
+            button.parentElement.remove();
+        }
+
+        // Funções para adicionar/remover idiomas
+        function addLanguage() {
+            const container = document.getElementById('languages-container');
+            const newItem = document.querySelector('.language-item').cloneNode(true);
+            
+            // Limpar os valores
+            const inputs = newItem.querySelectorAll('input, select');
+            inputs.forEach(input => input.value = '');
+            
+            // Mostrar botão de remover
+            newItem.querySelector('.remove-btn').style.display = 'inline-block';
+            
+            container.appendChild(newItem);
+        }
+
+        function removeLanguage(button) {
+            button.parentElement.remove();
+        }
+
+        // Função para gerar o PDF
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Coletar dados do formulário
+            const fullName = document.getElementById('fullName').value;
+            const profession = document.getElementById('profession').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const linkedin = document.getElementById('linkedin').value;
+            const summary = document.getElementById('summary').value;
+            const skills = document.getElementById('skills').value;
+
+            if (!fullName || !profession || !email || !phone || !summary) {
+                alert('Por favor, preencha todos os campos obrigatórios (*)');
+                return;
+            }
+
+            // Configurar fonte
+            doc.setFont("helvetica");
+
+            // Header com cor de fundo
+            doc.setFillColor(102, 126, 234);
+            doc.rect(0, 0, 210, 60, 'F');
+
+            // Nome
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(24);
+            doc.setFont("helvetica", "bold");
+            doc.text(fullName, 105, 25, { align: 'center' });
+
+            // Profissão
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "normal");
+            doc.text(profession, 105, 35, { align: 'center' });
+
+            // Informações de contato
+            doc.setFontSize(9);
+            let contactInfo = '';
+            if (address) contactInfo += address + ' | ';
+            contactInfo += phone;
+            doc.text(contactInfo, 105, 45, { align: 'center' });
+            
+            let contactInfo2 = email;
+            if (linkedin) contactInfo2 += ' | ' + linkedin;
+            doc.text(contactInfo2, 105, 52, { align: 'center' });
+
+            // Resetar cor do texto
+            doc.setTextColor(0, 0, 0);
+            let y = 75;
+
+            // Resumo Profissional
+            doc.setFontSize(14);
+            doc.setFont("helvetica", "bold");
+            doc.setTextColor(102, 126, 234);
+            doc.text('RESUMO PROFISSIONAL', 20, y);
+            
+            doc.setFontSize(10);
+            doc.setFont("helvetica", "normal");
+            doc.setTextColor(0, 0, 0);
+            y += 10;
+            
+            const splitSummary = doc.splitTextToSize(summary, 170);
+            doc.text(splitSummary, 20, y);
+            y += splitSummary.length * 5 + 10;
+
+            // Experiência Profissional
+            const experiences = [];
+            document.querySelectorAll('.experience-item').forEach(item => {
+                const position = item.querySelector('.experience-position').value;
+                const company = item.querySelector('.experience-company').value;
+                const startDate = item.querySelector('.experience-start').value;
+                const endDate = item.querySelector('.experience-end').value;
+                const isCurrent = item.querySelector('.experience-current').checked;
+                const description = item.querySelector('.experience-description').value;
+                
+                if (position && company) {
+                    experiences.push({
+                        position, company, startDate, 
+                        endDate: isCurrent ? 'Atual' : endDate, 
+                        description
+                    });
+                }
+            });
+
+            if (experiences.length > 0) {
+                if (y > 250) {
+                    doc.addPage();
+                    y = 20;
+                }
+                
+                doc.setFontSize(14);
+                doc.setFont("helvetica", "bold");
+                doc.setTextColor(102, 126, 234);
+                doc.text('EXPERIÊNCIA PROFISSIONAL', 20, y);
+                y += 15;
+                
+                experiences.forEach(exp => {
+                    if (y > 270) {
+                        doc.addPage();
+                        y = 20;
+                    }
+                    
+                    doc.setFontSize(11);
+                    doc.setFont("helvetica", "bold");
+                    doc.setTextColor(0, 0, 0);
+                    doc.text(exp.position, 20, y);
+                    
+                    doc.setFont("helvetica", "normal");
+                    doc.text(`${exp.company} | ${exp.startDate} - ${exp.endDate}`, 20, y + 5);
+                    
+                    if (exp.description) {
+                        doc.setFontSize(9);
+                        const splitDesc = doc.splitTextToSize(exp.description, 170);
+                        doc.text(splitDesc, 20, y + 12);
+                        y += splitDesc.length * 4 + 15;
+                    } else {
+                        y += 15;
+                    }
+                });
+            }
+
+            // Formação Acadêmica
+            const educations = [];
+            document.querySelectorAll('.education-item').forEach(item => {
+                const course = item.querySelector('.education-course').value;
+                const institution = item.querySelector('.education-institution').value;
+                const year = item.querySelector('.education-year').value;
+                const status = item.querySelector('.education-status').value;
+                
+                if (course && institution) {
+                    educations.push({ course, institution, year, status });
+                }
+            });
+
+            if (educations.length > 0) {
+                if (y > 250) {
+                    doc.addPage();
+                    y = 20;
+                }
+                
+                doc.setFontSize(14);
+                doc.setFont("helvetica", "bold");
+                doc.setTextColor(102, 126, 234);
+                doc.text('FORMAÇÃO ACADÊMICA', 20, y);
+                y += 15;
+                
+                educations.forEach(edu => {
+                    if (y > 270) {
+                        doc.addPage();
+                        y = 20;
+                    }
+                    
+                    doc.setFontSize(11);
+                    doc.setFont("helvetica", "bold");
+                    doc.setTextColor(0, 0, 0);
+                    doc.text(edu.course, 20, y);
+                    
+                    doc.setFont("helvetica", "normal");
+                    doc.text(`${edu.institution} | ${edu.year || 'Em andamento'} | ${edu.status}`, 20, y + 5);
+                    y += 15;
+                });
+            }
+
+            // Habilidades
+            if (skills) {
+                if (y > 250) {
+                    doc.addPage();
+                    y = 20;
+                }
+                
+                doc.setFontSize(14);
+                doc.setFont("helvetica", "bold");
+                doc.setTextColor(102, 126, 234);
+                doc.text('HABILIDADES', 20, y);
+                y += 10;
+                
+                doc.setFontSize(10);
+                doc.setFont("helvetica", "normal");
+                doc.setTextColor(0, 0, 0);
+                const splitSkills = doc.splitTextToSize(skills, 170);
+                doc.text(splitSkills, 20, y);
+                y += splitSkills.length * 5 + 10;
+            }
+
+            // Idiomas
+            const languages = [];
+            document.querySelectorAll('.language-item').forEach(item => {
+                const name = item.querySelector('.language-name').value;
+                const level = item.querySelector('.language-level').value;
+                
+                if (name) {
+                    languages.push({ name, level });
+                }
+            });
+
+            if (languages.length > 0) {
+                if (y > 250) {
+                    doc.addPage();
+                    y = 20;
+                }
+                
+                doc.setFontSize(14);
+                doc.setFont("helvetica", "bold");
+                doc.setTextColor(102, 126, 234);
+                doc.text('IDIOMAS', 20, y);
+                y += 15;
+                
+                languages.forEach(lang => {
+                    doc.setFontSize(10);
+                    doc.setFont("helvetica", "normal");
+                    doc.setTextColor(0, 0, 0);
+                    doc.text(`${lang.name} - ${lang.level}`, 20, y);
+                    y += 6;
+                });
+            }
+
+            // Salvar o PDF
+            doc.save(`curriculo-${fullName.replace(/\s+/g, '-').toLowerCase()}.pdf`);
+        }
+
+        // Listener para checkbox "Trabalho atual"
+        document.addEventListener('change', function(e) {
+            if (e.target.classList.contains('experience-current')) {
+                const endDateInput = e.target.closest('.experience-item').querySelector('.experience-end');
+                if (e.target.checked) {
+                    endDateInput.disabled = true;
+                    endDateInput.value = '';
+                } else {
+                    endDateInput.disabled = false;
+                }
+            }
+        });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
