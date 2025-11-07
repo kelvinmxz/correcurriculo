@@ -240,6 +240,416 @@
             border-radius: 5px;
             font-size: 0.9rem;
         }
+
+        /* Esquemas de Cores */
+        .color-scheme-blue {
+            --scheme-primary: #1e3c72;
+            --scheme-secondary: #2a5298;
+            --scheme-accent: #4A90E2;
+        }
+        
+        .color-scheme-green {
+            --scheme-primary: #2d5016;
+            --scheme-secondary: #4a7c59;
+            --scheme-accent: #6b9080;
+        }
+        
+        .color-scheme-purple {
+            --scheme-primary: #4c1d95;
+            --scheme-secondary: #7c3aed;
+            --scheme-accent: #a855f7;
+        }
+        
+        .color-scheme-red {
+            --scheme-primary: #991b1b;
+            --scheme-secondary: #dc2626;
+            --scheme-accent: #ef4444;
+        }
+        
+        .color-scheme-teal {
+            --scheme-primary: #134e4a;
+            --scheme-secondary: #0f766e;
+            --scheme-accent: #14b8a6;
+        }
+        
+        .color-scheme-orange {
+            --scheme-primary: #ea580c;
+            --scheme-secondary: #f97316;
+            --scheme-accent: #fb923c;
+        }
+        
+        .color-scheme-dark {
+            --scheme-primary: #1f2937;
+            --scheme-secondary: #374151;
+            --scheme-accent: #6b7280;
+        }
+
+        /* Template Gallery Styles */
+        .template-gallery {
+            margin: 20px 0;
+        }
+
+        .template-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+        }
+
+        .template-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .template-card.selected {
+            border-color: var(--primary-blue);
+            background-color: #f0f8ff;
+            box-shadow: 0 5px 20px rgba(74, 144, 226, 0.2);
+        }
+
+        .template-preview {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 220px;
+            margin-bottom: 15px;
+            position: relative;
+            transform: scale(0.85);
+            transform-origin: top left;
+            width: 120%;
+        }
+
+        /* Mini preview elements */
+        .mini-header {
+            padding: 12px 8px;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .classic-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+
+        .modern-header {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
+        }
+
+        .creative-header {
+            background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+            display: flex;
+            align-items: center;
+            text-align: left;
+            padding: 8px;
+        }
+
+        .minimal-header {
+            background: #f8f9fa;
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+        }
+
+        .executive-header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        }
+
+        .tech-header {
+            background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%);
+            position: relative;
+        }
+
+        .academic-header {
+            background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+            padding: 15px;
+            color: white;
+            text-align: center;
+        }
+
+        .academic-name {
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+
+        .mini-institution {
+            font-size: 8px;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        .mini-academic-item {
+            background: rgba(255,255,255,0.1);
+            padding: 5px;
+            margin: 3px 0;
+            border-radius: 3px;
+        }
+
+        .mini-degree {
+            font-size: 9px;
+            font-weight: bold;
+        }
+
+        .mini-university {
+            font-size: 8px;
+            opacity: 0.7;
+        }
+
+        .sales-header {
+            background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+            padding: 8px;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .sales-sidebar-mini {
+            width: 35%;
+            padding-right: 6px;
+            border-right: 1px solid rgba(255,255,255,0.3);
+            font-size: 6px;
+        }
+
+        .sales-main-mini {
+            width: 65%;
+            padding-left: 6px;
+        }
+
+        .sales-avatar {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            margin-bottom: 3px;
+        }
+
+        .mini-contact {
+            font-size: 5px;
+            line-height: 1.2;
+        }
+
+        .mini-contact-item {
+            margin: 1px 0;
+            opacity: 0.9;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .sales-name {
+            font-weight: bold;
+            font-size: 8px;
+            margin-bottom: 1px;
+            line-height: 1.1;
+        }
+
+        .mini-highlight {
+            background: rgba(255,255,255,0.2);
+            padding: 1px 3px;
+            border-radius: 2px;
+            font-size: 6px;
+            font-weight: bold;
+            margin-top: 2px;
+            display: inline-block;
+        }
+
+        .academic-layout, .sales-layout {
+            padding: 6px;
+            font-size: 7px;
+            line-height: 1.2;
+        }
+
+        .mini-title {
+            font-weight: bold;
+            font-size: 10px;
+            margin-bottom: 2px;
+            line-height: 1.1;
+        }
+
+        .mini-subtitle {
+            font-size: 8px;
+            opacity: 0.9;
+            line-height: 1.1;
+        }
+
+        .mini-avatar {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            margin-right: 10px;
+        }
+
+        .mini-header-content {
+            flex: 1;
+        }
+
+        .mini-contact-bar {
+            font-size: 8px;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+
+        .mini-tech-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #10b981;
+        }
+
+        .mini-content {
+            padding: 8px 6px;
+            font-size: 7px;
+            line-height: 1.3;
+        }
+
+        .modern-layout {
+            display: flex;
+            gap: 8px;
+            height: calc(100% - 40px);
+        }
+
+        .mini-left-col, .mini-right-col {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .creative-layout {
+            display: flex;
+            gap: 6px;
+            height: calc(100% - 35px);
+        }
+
+        .mini-sidebar {
+            width: 30%;
+            background: #f8f9fa;
+            padding: 6px 4px;
+            overflow: hidden;
+        }
+
+        .mini-main {
+            flex: 1;
+            padding: 6px;
+            overflow: hidden;
+        }
+
+        .tech-layout {
+            background: #1a1a1a;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 6px;
+            overflow: hidden;
+        }
+
+        .mini-section {
+            margin-bottom: 10px;
+        }
+
+        .mini-section-title {
+            font-weight: bold;
+            font-size: 9px;
+            margin-bottom: 5px;
+            color: var(--primary-blue);
+        }
+
+        .tech-layout .mini-section-title {
+            color: #00ff00;
+        }
+
+        .minimal-header .mini-section-title {
+            color: #2c3e50;
+        }
+
+        .mini-line {
+            height: 2px;
+            background: #ddd;
+            margin: 2px 0;
+            border-radius: 1px;
+        }
+
+        .mini-line.short {
+            width: 70%;
+        }
+
+        .mini-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px;
+        }
+
+        .mini-skill {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1px 4px;
+            border-radius: 6px;
+            font-size: 7px;
+        }
+
+        .executive-skills .mini-skill {
+            background: #1e40af;
+        }
+
+        .mini-skills-vertical .mini-skill-item {
+            background: #e0e0e0;
+            padding: 2px 6px;
+            margin: 2px 0;
+            border-radius: 3px;
+            font-size: 7px;
+        }
+
+        .mini-tech-stack {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+        }
+
+        .mini-tech-item {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 7px;
+            text-align: center;
+        }
+
+        .mini-contact-lines .mini-contact-line {
+            height: 1px;
+            background: #ccc;
+            margin: 2px 0;
+        }
+
+        .mini-text-lines {
+            margin: 3px 0;
+        }
+
+        .mini-text-lines .mini-line {
+            height: 1.5px;
+            background: #ddd;
+            margin: 1.5px 0;
+            border-radius: 1px;
+        }
+
+        .mini-text-lines .mini-line.short {
+            width: 75%;
+        }
+
+        .mini-text-lines .mini-line.medium {
+            width: 85%;
+        }
+
+        .template-info h6 {
+            color: var(--dark-blue);
+            margin-bottom: 8px;
+        }
+
+        .template-info .badge {
+            font-size: 0.7rem;
+        }
     </style>
 </head>
 <body>
@@ -247,7 +657,7 @@
         <!-- Hero Section -->
         <div class="hero-section">
             <div class="container">
-                <h1 class="display-4"><i class="fas fa-file-pdf me-3"></i>Gerador de Currículo Profissional</h1>
+                <h1 class="display-4">📄 Gerador de Currículo Profissional</h1>
                 <p class="lead">Crie seu currículo profissional em PDF de forma rápida e fácil</p>
             </div>
         </div>
@@ -259,20 +669,20 @@
                     <h1>Kelvin Costa Maues</h1>
                     <div class="subtitle">Desenvolvedor de Software & Técnico em Informática</div>
                     <div class="contact-info">
-                        <span><i class="fas fa-map-marker-alt me-2"></i>Travessa Aimoré, 18, Manaus</span>
-                        <span><i class="fas fa-phone me-2"></i>(92) 9 85116243</span>
-                        <span><i class="fas fa-envelope me-2"></i>kelvincosta4545@gmail.com</span>
-                        <span><i class="fas fa-link me-2"></i>Portfolio Online</span>
+                        <span>📍 Travessa Aimoré, 18, Manaus</span>
+                        <span>📱 (92) 9 85116243</span>
+                        <span>✉️ kelvincosta4545@gmail.com</span>
+                        <span>🔗 Portfolio Online</span>
                     </div>
                 </div>
 
                 <div class="curriculum-body">
-                    <h3 class="section-title"><i class="fas fa-user me-2"></i>Resumo Profissional</h3>
+                    <h3 class="section-title">👤 Resumo Profissional</h3>
                     <p>Sou Técnico em Informática com sólida formação e ampla experiência em Desenvolvimento de software. Atualmente, estou cursando Ciência da Computação, o que tem ampliado ainda mais minha visão sobre tecnologia e inovação. Tenho profundo conhecimento em linguagens de programação, metodologias ágeis e boas práticas de desenvolvimento, aliado a uma abordagem criativa e eficiente para resolução de problemas e otimização de processos.</p>
                     
                     <p>Sou apaixonado pela área de tecnologia e estou sempre em busca de novos desafios. Tenho grande interesse nas áreas de dados e visão computacional, onde vejo oportunidades empolgantes para aplicar inteligência artificial e análise de informações de forma estratégica.</p>
 
-                    <h3 class="section-title"><i class="fas fa-code me-2"></i>Habilidades e Competências</h3>
+                    <h3 class="section-title">💻 Habilidades e Competências</h3>
                     <div class="skills-container">
                         <span class="skill-tag">HTML & CSS</span>
                         <span class="skill-tag">Java</span>
@@ -288,7 +698,7 @@
                         <span class="skill-tag">Metodologias Ágeis</span>
                     </div>
 
-                    <h3 class="section-title"><i class="fas fa-briefcase me-2"></i>Experiência Profissional</h3>
+                    <h3 class="section-title">💼 Experiência Profissional</h3>
                     
                     <div class="experience-item">
                         <div class="experience-title">Estagiário de Desenvolvedor</div>
@@ -315,7 +725,7 @@
                         </div>
                     </div>
 
-                    <h3 class="section-title"><i class="fas fa-graduation-cap me-2"></i>Formação Acadêmica</h3>
+                    <h3 class="section-title">🎓 Formação Acadêmica</h3>
                     
                     <div class="experience-item">
                         <div class="experience-title">Ciências da Computação</div>
@@ -335,12 +745,12 @@
 
                     <div class="two-column">
                         <div>
-                            <h3 class="section-title"><i class="fas fa-language me-2"></i>Idiomas</h3>
+                            <h3 class="section-title">🌐 Idiomas</h3>
                             <p><strong>Português:</strong> Língua materna</p>
                             <p><strong>Inglês:</strong> Intermediário</p>
                         </div>
                         <div>
-                            <h3 class="section-title"><i class="fas fa-heart me-2"></i>Hobbies</h3>
+                            <h3 class="section-title">❤️ Hobbies</h3>
                             <p>Música, Esporte, Leitura, Assistir, Jogar</p>
                         </div>
                     </div>
@@ -350,30 +760,366 @@
             <!-- Botões de Ação -->
             <div class="text-center mb-4">
                 <button onclick="generatePDF()" class="btn btn-generate btn-lg me-3">
-                    <i class="fas fa-download me-2"></i>Baixar PDF deste Currículo
+                    📄 Baixar PDF deste Currículo
                 </button>
                 <a href="home.html" class="btn btn-generate btn-lg">
-                    <i class="fas fa-home me-2"></i>Ir para Home
+                    🏠 Ir para Home
                 </a>
             </div>
 
             <!-- CTA Section -->
             <div class="cta-section">
-                <h2><i class="fas fa-magic me-3"></i>Crie Seu Próprio Currículo!</h2>
+                <h2>✨ Crie Seu Próprio Currículo!</h2>
                 <p class="lead">Use nosso gerador para criar um currículo profissional personalizado em minutos</p>
                 <button onclick="showForm()" class="btn btn-create btn-lg">
-                    <i class="fas fa-plus-circle me-2"></i>Criar Meu Currículo
+                    📝 Criar Meu Currículo
                 </button>
             </div>
 
             <!-- Formulário Dinâmico (Oculto inicialmente) -->
             <div id="form-container" class="form-container">
-                <h2 class="text-center mb-4"><i class="fas fa-edit me-2"></i>Criar Seu Currículo</h2>
+                <a name="form"></a>
+                <h2 class="text-center mb-4">📝 Criar Seu Currículo</h2>
                 
                 <form id="curriculum-form">
-                    <!-- Informações Pessoais -->
+                   
+
+                    <!-- Escolha do Modelo -->
                     <div class="form-section">
-                        <h4><i class="fas fa-user me-2"></i>Informações Pessoais</h4>
+                        <h4>🎨 Escolha seu Modelo de Currículo</h4>
+                        <p class="text-muted mb-4">Selecione o modelo que mais combina com seu perfil profissional</p>
+                        
+                        <div class="template-gallery">
+                            <div class="row">
+                                <!-- Modelo Clássico -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="template-card" data-template="classic">
+                                        <div class="template-preview">
+                                            <div class="mini-header classic-header">
+                                                <div class="mini-title">Kelvin Costa Maues</div>
+                                                <div class="mini-subtitle">Desenvolvedor de Software</div>
+                                            </div>
+                                            <div class="mini-content">
+                                                <div class="mini-section">
+                                                    <div class="mini-section-title">► RESUMO PROFISSIONAL</div>
+                                                    <div class="mini-text-lines">
+                                                        <div class="mini-line"></div>
+                                                        <div class="mini-line short"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="mini-section">
+                                                    <div class="mini-section-title">★ HABILIDADES</div>
+                                                    <div class="mini-skills">
+                                                        <span class="mini-skill">HTML</span>
+                                                        <span class="mini-skill">Java</span>
+                                                        <span class="mini-skill">Python</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="template-info">
+                                            <h6>Clássico Profissional</h6>
+                                            <p class="small text-muted">Layout tradicional, ideal para áreas corporativas</p>
+                                            <span class="badge bg-primary">Azul Profissional</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modelo Moderno -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="template-card" data-template="modern">
+                                        <div class="template-preview">
+                                            <div class="mini-header modern-header">
+                                                <div class="mini-title">Kelvin Costa Maues</div>
+                                                <div class="mini-subtitle">Desenvolvedor de Software</div>
+                                            </div>
+                                            <div class="mini-content modern-layout">
+                                                <div class="mini-left-col">
+                                                    <div class="mini-section">
+                                                        <div class="mini-section-title">★ HABILIDADES</div>
+                                                        <div class="mini-skills-vertical">
+                                                            <div class="mini-skill-item">HTML & CSS</div>
+                                                            <div class="mini-skill-item">JavaScript</div>
+                                                            <div class="mini-skill-item">Python</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mini-right-col">
+                                                    <div class="mini-section">
+                                                        <div class="mini-section-title">♦ EXPERIÊNCIA</div>
+                                                        <div class="mini-text-lines">
+                                                            <div class="mini-line"></div>
+                                                            <div class="mini-line short"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="template-info">
+                                            <h6>Moderno Dinâmico</h6>
+                                            <p class="small text-muted">Layout em duas colunas, design contemporâneo</p>
+                                            <span class="badge bg-success">Verde Moderno</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modelo Criativo -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="template-card" data-template="creative">
+                                        <div class="template-preview">
+                                            <div class="mini-header creative-header">
+                                                <div class="mini-avatar"></div>
+                                                <div class="mini-header-content">
+                                                    <div class="mini-title">Kelvin Costa Maues</div>
+                                                    <div class="mini-subtitle">Desenvolvedor de Software</div>
+                                                </div>
+                                            </div>
+                                            <div class="mini-content creative-layout">
+                                                <div class="mini-sidebar">
+                                                    <div class="mini-section">
+                                                        <div class="mini-section-title">CONTATO</div>
+                                                        <div class="mini-contact-lines">
+                                                            <div class="mini-contact-line"></div>
+                                                            <div class="mini-contact-line"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mini-main">
+                                                    <div class="mini-section">
+                                                        <div class="mini-section-title">♦ EXPERIÊNCIA</div>
+                                                        <div class="mini-text-lines">
+                                                            <div class="mini-line"></div>
+                                                            <div class="mini-line short"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="template-info">
+                                            <h6>Criativo Inovador</h6>
+                                            <p class="small text-muted">Design diferenciado para áreas criativas</p>
+                                            <span class="badge bg-warning text-dark">Laranja Criativo</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modelo Minimalista -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="template-card" data-template="minimal">
+                                        <div class="template-preview">
+                                            <div class="mini-header minimal-header">
+                                                <div class="mini-title">KELVIN COSTA MAUES</div>
+                                                <div class="mini-subtitle">Desenvolvedor de Software & Técnico em Informática</div>
+                                            </div>
+                                            <div class="mini-content">
+                                                <div class="mini-section">
+                                                    <div class="mini-section-title">RESUMO PROFISSIONAL</div>
+                                                    <div class="mini-text-lines">
+                                                        <div class="mini-line"></div>
+                                                        <div class="mini-line"></div>
+                                                        <div class="mini-line short"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="mini-section">
+                                                    <div class="mini-section-title">EXPERIÊNCIA PROFISSIONAL</div>
+                                                    <div class="mini-text-lines">
+                                                        <div class="mini-line"></div>
+                                                        <div class="mini-line short"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="template-info">
+                                            <h6>Minimalista Elegante</h6>
+                                            <p class="small text-muted">Design limpo e direto ao ponto</p>
+                                            <span class="badge bg-dark">Escuro Elegante</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modelo Executivo -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="template-card" data-template="executive">
+                                        <div class="template-preview">
+                                            <div class="mini-header executive-header">
+                                                <div class="mini-title">Kelvin Costa Maues</div>
+                                                <div class="mini-subtitle">Desenvolvedor de Software & Técnico em Informática</div>
+                                                <div class="mini-contact-bar">
+                                                    <span>📧 email</span> | <span>📱 telefone</span>
+                                                </div>
+                                            </div>
+                                            <div class="mini-content">
+                                                <div class="mini-section">
+                                                    <div class="mini-section-title">PERFIL PROFISSIONAL</div>
+                                                    <div class="mini-text-lines">
+                                                        <div class="mini-line"></div>
+                                                        <div class="mini-line short"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="mini-section">
+                                                    <div class="mini-section-title">COMPETÊNCIAS TÉCNICAS</div>
+                                                    <div class="mini-skills executive-skills">
+                                                        <span class="mini-skill">HTML</span>
+                                                        <span class="mini-skill">Java</span>
+                                                        <span class="mini-skill">Python</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="template-info">
+                                            <h6>Executivo Premium</h6>
+                                            <p class="small text-muted">Design sofisticado para altos cargos</p>
+                                            <span class="badge bg-info">Azul Executivo</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modelo Tech -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="template-card" data-template="tech">
+                                        <div class="template-preview">
+                                            <div class="mini-header tech-header">
+                                                <div class="mini-tech-accent"></div>
+                                                <div class="mini-title">Kelvin Costa Maues</div>
+                                                <div class="mini-subtitle">{ Desenvolvedor Full Stack }</div>
+                                            </div>
+                                            <div class="mini-content tech-layout">
+                                                <div class="mini-section">
+                                                    <div class="mini-section-title">// STACK TECNOLÓGICA</div>
+                                                    <div class="mini-tech-stack">
+                                                        <div class="mini-tech-item">HTML/CSS</div>
+                                                        <div class="mini-tech-item">JavaScript</div>
+                                                        <div class="mini-tech-item">Python</div>
+                                                        <div class="mini-tech-item">Java</div>
+                                                    </div>
+                                                </div>
+                                                <div class="mini-section">
+                                                    <div class="mini-section-title">// PROJETOS</div>
+                                                    <div class="mini-text-lines">
+                                                        <div class="mini-line"></div>
+                                                        <div class="mini-line short"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="template-info">
+                                            <h6>Tech Developer</h6>
+                                            <p class="small text-muted">Design específico para desenvolvedores</p>
+                                            <span class="badge bg-secondary">Roxo Tech</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modelo Acadêmico -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="template-card" data-template="academic">
+                                        <div class="template-preview">
+                                            <div class="mini-header academic-header">
+                                                <div class="mini-title academic-name">Dr. João Silva</div>
+                                                <div class="mini-subtitle">Professor Titular | Pesquisador</div>
+                                                <div class="mini-institution">Universidade Federal</div>
+                                            </div>
+                                            <div class="mini-content academic-layout">
+                                                <div class="mini-section">
+                                                    <div class="mini-section-title">FORMAÇÃO ACADÊMICA</div>
+                                                    <div class="mini-academic-item">
+                                                        <div class="mini-degree">PhD em Ciência da Computação</div>
+                                                        <div class="mini-university">USP - 2018</div>
+                                                    </div>
+                                                </div>
+                                                <div class="mini-section">
+                                                    <div class="mini-section-title">PUBLICAÇÕES RECENTES</div>
+                                                    <div class="mini-text-lines">
+                                                        <div class="mini-line"></div>
+                                                        <div class="mini-line short"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="template-info">
+                                            <h6>Acadêmico</h6>
+                                            <p class="small text-muted">Para professores e pesquisadores</p>
+                                            <span class="badge bg-info">Azul Acadêmico</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modelo Comercial/Vendas -->
+                                <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="template-card" data-template="sales">
+                                        <div class="template-preview">
+                                            <div class="mini-header sales-header">
+                                                <div class="sales-sidebar-mini">
+                                                    <div class="mini-avatar sales-avatar"></div>
+                                                    <div class="mini-contact">
+                                                        <div class="mini-contact-item">📞 (11) 99999-9999</div>
+                                                        <div class="mini-contact-item">📧 email@email.com</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sales-main-mini">
+                                                    <div class="mini-title sales-name">MARIA VENDAS</div>
+                                                    <div class="mini-subtitle">Consultora Comercial Senior</div>
+                                                    <div class="mini-highlight">META 2024: 125% ALCANÇADA</div>
+                                                </div>
+                                            </div>
+                                            <div class="mini-content sales-layout">
+                                                <div class="mini-section">
+                                                    <div class="mini-section-title">EXPERIÊNCIA COMERCIAL</div>
+                                                    <div class="mini-text-lines">
+                                                        <div class="mini-line"></div>
+                                                        <div class="mini-line short"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="mini-section">
+                                                    <div class="mini-section-title">RESULTADOS ALCANÇADOS</div>
+                                                    <div class="mini-text-lines">
+                                                        <div class="mini-line"></div>
+                                                        <div class="mini-line short"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="template-info">
+                                            <h6>Comercial/Vendas</h6>
+                                            <p class="small text-muted">Para profissionais de vendas</p>
+                                            <span class="badge bg-warning">Laranja Vendas</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Template selecionado -->
+                        <input type="hidden" id="selectedTemplate" value="classic">
+                        
+                        <!-- Opções adicionais do template selecionado -->
+                        <div class="mt-4">
+                            <h6>Opções do Modelo Selecionado:</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="form-label">Tamanho da Fonte</label>
+                                    <select class="form-control" id="fontSize">
+                                        <option value="small">Pequena (10pt)</option>
+                                        <option value="medium" selected>Média (12pt)</option>
+                                        <option value="large">Grande (14pt)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Variação de Cor</label>
+                                    <select class="form-control" id="colorVariation">
+                                        <option value="default">Padrão do Modelo</option>
+                                        <option value="blue">Azul Profissional</option>
+                                        <option value="green">Verde Corporativo</option>
+                                        <option value="purple">Roxo Moderno</option>
+                                        <option value="dark">Escuro Elegante</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                       <!-- Informações Pessoais -->
+                    <div class="form-section">
+                        <h4>👤 Informações Pessoais</h4>
                         <div class="row">
                             <div class="col-md-6">
                                 <label class="form-label">Nome Completo *</label>
@@ -405,29 +1151,28 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Resumo Profissional -->
                     <div class="form-section">
-                        <h4><i class="fas fa-file-text me-2"></i>Resumo Profissional</h4>
+                        <h4>📄 Resumo Profissional</h4>
                         <label class="form-label">Descreva sua experiência e objetivos profissionais</label>
                         <textarea class="form-control" id="summary" rows="4" placeholder="Descreva brevemente sua experiência, habilidades e objetivos profissionais..."></textarea>
                     </div>
 
                     <!-- Habilidades -->
                     <div class="form-section">
-                        <h4><i class="fas fa-code me-2"></i>Habilidades</h4>
+                        <h4>💻 Habilidades</h4>
                         <div id="skills-container">
                             <div class="dynamic-field">
                                 <input type="text" class="form-control" name="skill" placeholder="Ex: JavaScript, Python, React...">
                                 <button type="button" class="remove-btn" onclick="removeField(this)">×</button>
                             </div>
                         </div>
-                        <button type="button" class="add-btn" onclick="addSkill()"><i class="fas fa-plus me-1"></i>Adicionar Habilidade</button>
+                        <button type="button" class="add-btn" onclick="addSkill()">➕ Adicionar Habilidade</button>
                     </div>
 
                     <!-- Experiência -->
                     <div class="form-section">
-                        <h4><i class="fas fa-briefcase me-2"></i>Experiência Profissional</h4>
+                        <h4>💼 Experiência Profissional</h4>
                         <div id="experience-container">
                             <div class="dynamic-field">
                                 <button type="button" class="remove-btn" onclick="removeField(this)">×</button>
@@ -457,12 +1202,12 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="add-btn" onclick="addExperience()"><i class="fas fa-plus me-1"></i>Adicionar Experiência</button>
+                        <button type="button" class="add-btn" onclick="addExperience()">➕ Adicionar Experiência</button>
                     </div>
 
                     <!-- Formação -->
                     <div class="form-section">
-                        <h4><i class="fas fa-graduation-cap me-2"></i>Formação Acadêmica</h4>
+                        <h4>🎓 Formação Acadêmica</h4>
                         <div id="education-container">
                             <div class="dynamic-field">
                                 <button type="button" class="remove-btn" onclick="removeField(this)">×</button>
@@ -486,18 +1231,49 @@
                                         <input type="text" class="form-control" name="eduEndDate">
                                     </div>
                                 </div>
+                                <div class="mt-2">
+                                    <label class="form-label">Descrição (Opcional)</label>
+                                    <textarea class="form-control" name="eduDescription" rows="2" placeholder="Descreva o curso, especialização ou conquistas acadêmicas relevantes..."></textarea>
+                                </div>
                             </div>
                         </div>
-                        <button type="button" class="add-btn" onclick="addEducation()"><i class="fas fa-plus me-1"></i>Adicionar Formação</button>
+                        <button type="button" class="add-btn" onclick="addEducation()">➕ Adicionar Formação</button>
+                    </div>
+
+                    <!-- Idiomas -->
+                    <div class="form-section">
+                        <h4>🌐 Idiomas</h4>
+                        <div id="languages-container">
+                            <div class="dynamic-field">
+                                <button type="button" class="remove-btn" onclick="removeField(this)">×</button>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Idioma</label>
+                                        <input type="text" class="form-control" name="language" placeholder="Ex: Inglês, Espanhol...">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Nível</label>
+                                        <select class="form-control" name="languageLevel">
+                                            <option value="Básico">Básico</option>
+                                            <option value="Intermediário">Intermediário</option>
+                                            <option value="Avançado">Avançado</option>
+                                            <option value="Fluente">Fluente</option>
+                                            <option value="Nativo">Nativo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="add-btn" onclick="addLanguage()">➕ Adicionar Idioma</button>
                     </div>
 
                     <!-- Botões de Ação -->
                     <div class="text-center mt-4">
                         <button type="button" onclick="generateCustomPDF()" class="btn btn-generate btn-lg me-3">
-                            <i class="fas fa-file-pdf me-2"></i>Gerar Meu PDF
+                            📄 Gerar Meu PDF
                         </button>
                         <button type="button" onclick="hideForm()" class="btn btn-outline-secondary btn-lg">
-                            <i class="fas fa-times me-2"></i>Cancelar
+                            ❌ Cancelar
                         </button>
                     </div>
                 </form>
@@ -507,5 +1283,160 @@
 
     <!-- Scripts -->
     <script src="curriculum-generator.js"></script>
+    
+    <script>
+        // Seleção de templates
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar se veio da home com âncora #form
+            if (window.location.hash === '#form') {
+                showForm();
+            }
+            
+            const templateCards = document.querySelectorAll('.template-card');
+            const selectedTemplateInput = document.getElementById('selectedTemplate');
+            
+            // Marcar o primeiro template como selecionado por padrão
+            if (templateCards.length > 0) {
+                templateCards[0].classList.add('selected');
+            }
+            
+            templateCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remover seleção anterior
+                    templateCards.forEach(c => c.classList.remove('selected'));
+                    
+                    // Selecionar novo template
+                    this.classList.add('selected');
+                    selectedTemplateInput.value = this.dataset.template;
+                    
+                    // Feedback visual
+                    this.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        });
+        
+        // Mostrar/ocultar formulário
+        function showForm() {
+            document.getElementById('form-container').style.display = 'block';
+            document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function hideForm() {
+            document.getElementById('form-container').style.display = 'none';
+        }
+        
+        // Adicionar campos dinâmicos
+        function addSkill() {
+            const container = document.getElementById('skills-container');
+            const div = document.createElement('div');
+            div.className = 'dynamic-field';
+            div.innerHTML = `
+                <input type="text" class="form-control" name="skill" placeholder="Ex: JavaScript, Python, React...">
+                <button type="button" class="remove-btn" onclick="removeField(this)">×</button>
+            `;
+            container.appendChild(div);
+        }
+        
+        function addExperience() {
+            const container = document.getElementById('experience-container');
+            const div = document.createElement('div');
+            div.className = 'dynamic-field';
+            div.innerHTML = `
+                <button type="button" class="remove-btn" onclick="removeField(this)">×</button>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label">Cargo</label>
+                        <input type="text" class="form-control" name="jobPosition">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Empresa</label>
+                        <input type="text" class="form-control" name="company">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Data Início</label>
+                        <input type="text" class="form-control" name="startDate" placeholder="Ex: Janeiro 2023">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Data Fim</label>
+                        <input type="text" class="form-control" name="endDate" placeholder="Ex: Atual">
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <label class="form-label">Descrição</label>
+                    <textarea class="form-control" name="jobDescription" rows="3" placeholder="Descreva suas responsabilidades e conquistas..."></textarea>
+                </div>
+            `;
+            container.appendChild(div);
+        }
+        
+        function addEducation() {
+            const container = document.getElementById('education-container');
+            const div = document.createElement('div');
+            div.className = 'dynamic-field';
+            div.innerHTML = `
+                <button type="button" class="remove-btn" onclick="removeField(this)">×</button>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label">Curso</label>
+                        <input type="text" class="form-control" name="course">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Instituição</label>
+                        <input type="text" class="form-control" name="institution">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Data Início</label>
+                        <input type="text" class="form-control" name="eduStartDate">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Data Fim</label>
+                        <input type="text" class="form-control" name="eduEndDate">
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <label class="form-label">Descrição (Opcional)</label>
+                    <textarea class="form-control" name="eduDescription" rows="2" placeholder="Descreva o curso, especialização ou conquistas acadêmicas relevantes..."></textarea>
+                </div>
+            `;
+            container.appendChild(div);
+        }
+        
+        function addLanguage() {
+            const container = document.getElementById('languages-container');
+            const div = document.createElement('div');
+            div.className = 'dynamic-field';
+            div.innerHTML = `
+                <button type="button" class="remove-btn" onclick="removeField(this)">×</button>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label">Idioma</label>
+                        <input type="text" class="form-control" name="language" placeholder="Ex: Inglês, Espanhol...">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Nível</label>
+                        <select class="form-control" name="languageLevel">
+                            <option value="Básico">Básico</option>
+                            <option value="Intermediário">Intermediário</option>
+                            <option value="Avançado">Avançado</option>
+                            <option value="Fluente">Fluente</option>
+                            <option value="Nativo">Nativo</option>
+                        </select>
+                    </div>
+                </div>
+            `;
+            container.appendChild(div);
+        }
+        
+        function removeField(button) {
+            button.parentElement.remove();
+        }
+    </script>
 </body>
 </html>
