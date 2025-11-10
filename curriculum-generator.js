@@ -216,15 +216,26 @@ function collectFormData() {
 
     // Coletar idiomas
     const langContainers = document.querySelectorAll('#languages-container .dynamic-field');
+    console.log('Containers de idiomas encontrados:', langContainers.length);
+    
     langContainers.forEach(container => {
-        const lang = {
-            language: container.querySelector('input[name="language"]').value,
-            level: container.querySelector('select[name="languageLevel"]').value
-        };
-        if (lang.language) {
-            data.languages.push(lang);
+        const langInput = container.querySelector('input[name="language"]');
+        const levelSelect = container.querySelector('select[name="languageLevel"]');
+        
+        if (langInput && levelSelect) {
+            const lang = {
+                language: langInput.value,
+                level: levelSelect.value
+            };
+            console.log('Idioma coletado:', lang);
+            if (lang.language) {
+                data.languages.push(lang);
+            }
         }
     });
+    
+    console.log('Total de idiomas coletados:', data.languages.length);
+    console.log('Dados completos:', data);
 
     return data;
 }
